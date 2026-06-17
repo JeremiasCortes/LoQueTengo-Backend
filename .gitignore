@@ -82,3 +82,6 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+# Archivos de entorno
+.env

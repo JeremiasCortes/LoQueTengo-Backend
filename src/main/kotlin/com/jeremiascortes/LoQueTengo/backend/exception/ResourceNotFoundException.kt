@@ -1,4 +1,6 @@
 package com.jeremiascortes.LoQueTengo.backend.exception
 
-class ResourceNotFoundException {
-}
+/**
+ * Excepción para recursos no encontrados
+ */
+class ResourceNotFoundException(message: String) : RuntimeException(message)

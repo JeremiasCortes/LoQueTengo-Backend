@@ -1,4 +1,12 @@
 package com.jeremiascortes.LoQueTengo.backend.entity
 
-class AuthProvider {
+/**
+ * Proveedores de autenticación
+ */
+enum class AuthProvider {
+    LOCAL,
+    GOOGLE,
+    GITHUB,
+    INSTAGRAM,
+    APPLE
 }
