@@ -1,0 +1,42 @@
+services:
+  # ============================================
+  # BASE DE DATOS (PostgreSQL)
+  # ============================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: loquetengo-postgres
+    environment:
+      POSTGRES_DB: jdbc:postgresql://postgres:5432/postgres
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # BACKEND
+  # ============================================
+  backend:
+    build: .
+    container_name: loquetengo-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-postgres}
+      DB_USERNAME: ${POSTGRES_USER:-postgres}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      JWT_EXPIRATION_MINUTES: ${JWT_EXPIRATION_MINUTES:-60}
+    ports:
+      - "9999:9999"
+
+volumes:
+  postgres-data:

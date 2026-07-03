@@ -2,8 +2,11 @@ package com.jeremiascortes.LoQueTengo.backend.controller
 
 import com.jeremiascortes.LoQueTengo.backend.dto.request.CreateLocalUserRequest
 import com.jeremiascortes.LoQueTengo.backend.dto.request.CreateOAuthUserRequest
+import com.jeremiascortes.LoQueTengo.backend.dto.request.LoginRequest
 import com.jeremiascortes.LoQueTengo.backend.dto.response.ApiResponse
+import com.jeremiascortes.LoQueTengo.backend.dto.response.AuthResponse
 import com.jeremiascortes.LoQueTengo.backend.dto.response.UserResponse
+import com.jeremiascortes.LoQueTengo.backend.service.AuthService
 import com.jeremiascortes.LoQueTengo.backend.service.UserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -16,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/auth")
 class AuthController(
-    private val userService: UserService
+    private val userService: UserService,
+    private val authService: AuthService
 ) {
 
     @PostMapping("/oauth")
@@ -41,5 +45,15 @@ class AuthController(
         return ResponseEntity.status(HttpStatus.CREATED).body(
             ApiResponse.success(user, "Usuario creado correctamente")
         )
+    }
+
+    @PostMapping("/login")
+    fun login(
+        @Valid @RequestBody
+        request: LoginRequest
+    ): ResponseEntity<ApiResponse<AuthResponse>> {
+        val authResponse = authService.login(request)
+
+        return ResponseEntity.ok(ApiResponse.success(authResponse, "Login exitoso"))
     }
 }

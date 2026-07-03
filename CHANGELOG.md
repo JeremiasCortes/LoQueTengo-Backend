@@ -7,6 +7,12 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [0.0.1] - 2026-07-03
+- Iniciación del sistema de JWT
+- Creación de usuarios
+- Login con usuarios
+- Seguridad "RLS"
+
 ## [0.0.0] - 2026-06-06
 
 ### Añadido
