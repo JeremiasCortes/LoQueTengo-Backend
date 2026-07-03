@@ -28,3 +28,8 @@ management:
   endpoint:
     health:
       show-details: when-authorized
+
+# 🆕 Configuración de JWT
+jwt:
+  secret: ${JWT_SECRET}
+  expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}  # Por defecto 60 si no está la env

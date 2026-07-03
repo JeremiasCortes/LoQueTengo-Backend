@@ -17,7 +17,7 @@ interface UserRepository : JpaRepository<User, UUID> {
      * @param email El correo electrónico del usuario que se desea buscar.
      * @return Un objeto `User` si se encuentra un usuario con el correo especificado, o `null` si no se encuentra ningún usuario.
      */
-    @Query("SELECT u FROM User u WHERE u.id = :id")
+    @Query("SELECT u FROM User u WHERE u.email = :email")
     fun findByEmail(@Param("email") email: String): User?
 
     /**

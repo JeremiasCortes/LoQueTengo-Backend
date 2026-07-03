@@ -9,11 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 
-/**
- * Manejador global de excepciones. Convierte excepciones de dominio a
- * respuestas HTTP coherentes, devolviendo siempre el wrapper
- * [ApiResponse] para mantener un contrato uniforme con el cliente.
- */
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
@@ -32,6 +27,11 @@ class GlobalExceptionHandler {
     @ExceptionHandler(OAuthAccountAlreadyLinkedException::class)
     fun handleOAuthConflict(ex: OAuthAccountAlreadyLinkedException): ResponseEntity<ApiResponse<Nothing>> =
         ResponseEntity.status(HttpStatus.CONFLICT)
+            .body(ApiResponse.error(ex.message))
+
+    @ExceptionHandler(InvalidCredentialsException::class)
+    fun handleInvalidCredentials(ex: InvalidCredentialsException): ResponseEntity<ApiResponse<Nothing>> =
+        ResponseEntity.status(HttpStatus.UNAUTHORIZED)
             .body(ApiResponse.error(ex.message))
 
     @ExceptionHandler(IllegalArgumentException::class)
@@ -55,7 +55,6 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception::class)
     fun handleGeneral(ex: Exception): ResponseEntity<ApiResponse<Nothing>> {
-        // Log SIEMPRE los 500: si no, no sabrás nunca qué pasó en producción.
         log.error("Unhandled exception", ex)
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(ApiResponse.error("Error interno del servidor"))
