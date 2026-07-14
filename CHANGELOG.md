@@ -7,7 +7,15 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [0.0.2]
+
+### Added
+- Entidad [Category](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/Category.kt)
+
 ## [0.0.1] - 2026-07-03
+
+### Added
+
 - Iniciación del sistema de JWT
 - Creación de usuarios
 - Login con usuarios
@@ -15,5 +23,5 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [0.0.0] - 2026-06-06
 
-### Añadido
+### Added
 - Inicialización de todo el proyecto y subida a GitHub
