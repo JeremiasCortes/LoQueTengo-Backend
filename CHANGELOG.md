@@ -11,6 +11,7 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ### Added
 - Entidad [Category](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/Category.kt)
+- Entidad [Product](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/Product.kt)
 
 ## [0.0.1] - 2026-07-03
 
