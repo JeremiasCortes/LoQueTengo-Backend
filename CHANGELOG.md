@@ -15,6 +15,7 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 - Entidad [Purchase](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/Purchase.kt)
 - Entidad [PurchaseDetail](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/PurchaseDetail.kt)
 - Entidad [TypeUni](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/TypeUnit.kt)
+- Entidad [Unit](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/Unit.kt)
 
 ## [0.0.1] - 2026-07-03
 
