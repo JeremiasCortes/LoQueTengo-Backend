@@ -6,10 +6,14 @@ import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
+import org.hibernate.annotations.SQLDelete
+import org.hibernate.annotations.SQLRestriction
 
 @Entity
 @Table(name = "purchase_detail")
-class PurchaseDetail (
+@SQLDelete(sql = "UPDATE purchase_detail SET is_deleted = TRUE, deleted_at = now(), updated_at = now() WHERE id = ?")
+@SQLRestriction("is_deleted = false")
+class PurchaseDetail(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_id", nullable = false)
@@ -30,6 +34,6 @@ class PurchaseDetail (
     val price_unit: Double,
 
     @Column(nullable = false, precision = 5, scale = 2)
-    val price_total: Double,
+    val price_total: Double
 
 ) : BaseEntity()
