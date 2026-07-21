@@ -22,19 +22,20 @@ interface CategoryRepository : JpaRepository<Category, UUID> {
     /**
      * Busca una categoría en la base de datos por su identificador único.
      *
-     * @param id El identificador único (UUID) de la categoría que se desea buscar.
-     * @return La entidad [Category] que coincide con el identificador especificado.
+     * @param id El identificador único de la categoría que se desea buscar.
+     * @return Un objeto `Category` si se encuentra una categoría con el identificador proporcionado,
+     * o `null` si no se encuentra ninguna categoría.
      */
     @Query("SELECT c FROM Category c WHERE c.id = :id")
-    fun findCategoryById(@Param("id") id: UUID): Category
+    fun findCategoryById(@Param("id") id: UUID): Category?
 
     /**
-     * Busca una categoría en la base de datos por su nombre exacto.
+     * Busca una categoría en la base de datos por su nombre.
      *
      * @param name El nombre de la categoría que se desea buscar.
-     * @return La entidad [Category] que coincide con el nombre especificado,
-     * o una excepción si no se encuentra ninguna categoría con ese nombre.
+     * @return Un objeto `Category` si se encuentra una categoría con el nombre especificado,
+     * o `null` si no se encuentra ninguna categoría.
      */
     @Query("SELECT c FROM Category c WHERE c.name = :name")
-    fun findCategoryByName(@Param("name") name: String): Category
+    fun findCategoryByName(@Param("name") name: String): Category?
 }

@@ -14,11 +14,10 @@ interface PurchaseDetailRepository : JpaRepository<PurchaseDetail, UUID> {
      * Busca un detalle de compra en la base de datos utilizando su identificador único.
      *
      * @param id El identificador único del detalle de compra que se desea buscar.
-     * @return Un objeto `PurchaseDetail` correspondiente al identificador proporcionado.
-     * Lanza una excepción si no se encuentra el detalle de compra.
+     * @return Un objeto `PurchaseDetail` si se encuentra un detalle de compra con el identificador especificado, o `null` si no se encuentra ningún detalle.
      */
     @Query("SELECT pd FROM PurchaseDetail pd WHERE pd.id = :id")
-    fun findPurchaseDetailById(@Param("id") id: UUID): PurchaseDetail
+    fun findPurchaseDetailById(@Param("id") id: UUID): PurchaseDetail?
 
     /**
      * Busca los detalles de compra asociados a un identificador de compra específico.
