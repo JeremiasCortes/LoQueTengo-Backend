@@ -20,6 +20,8 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 - Repositorio [Product](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/ProductRepository.kt) para la entidad product
 - Repositorio [Purchase](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/PurchaseRepository.kt) para la entidad Purchase
 - Repositorio [PurchaseDetail](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/PurchaseDetailRepository.kt) para la entidad PurchaseDetail
+- Repositorio [TypeUnit](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/TypeUnitRepository.kt) para la entidad TypeUnit
+- Repositorio [Unit](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/UnitRepository.kt) para la entidad Unit
 
 ## [0.0.1] - 2026-07-03
 
