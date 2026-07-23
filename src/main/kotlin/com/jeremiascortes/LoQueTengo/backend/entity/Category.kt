@@ -13,5 +13,5 @@ import org.hibernate.annotations.SQLRestriction
 class Category(
 
     @Column(nullable = false, length = 32)
-    val name: String
+    var name: String
 ) : BaseEntity()
