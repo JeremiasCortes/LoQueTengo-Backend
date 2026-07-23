@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
+import java.math.BigDecimal
 import java.time.Instant
 
 @Entity
@@ -17,5 +18,5 @@ class Purchase(
     var date: Instant,
 
     @Column(nullable = false, precision = 5, scale = 2)
-    var total: Double
+    var total: BigDecimal
 ) : BaseEntity()

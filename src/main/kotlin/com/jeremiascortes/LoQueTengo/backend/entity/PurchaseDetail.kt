@@ -1,13 +1,9 @@
 package com.jeremiascortes.LoQueTengo.backend.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
+import java.math.BigDecimal
 
 @Entity
 @Table(name = "purchase_detail")
@@ -28,12 +24,12 @@ class PurchaseDetail(
     val unitId: Unit,
 
     @Column(nullable = false, precision = 5, scale = 2)
-    val quantity: Double,
+    val quantity: BigDecimal,
 
     @Column(nullable = false, precision = 5, scale = 2)
-    val price_unit: Double,
+    val price_unit: BigDecimal,
 
     @Column(nullable = false, precision = 5, scale = 2)
-    val price_total: Double
+    val price_total: BigDecimal
 
 ) : BaseEntity()
