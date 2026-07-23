@@ -1,7 +1,5 @@
 package com.jeremiascortes.LoQueTengo.backend.dto.response
 
-import java.time.Instant
-
 data class ApiResponse<T>(
     val success: Boolean,
     val data: T?,
