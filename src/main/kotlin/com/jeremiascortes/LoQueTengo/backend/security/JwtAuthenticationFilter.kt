@@ -13,7 +13,8 @@ import org.springframework.web.filter.OncePerRequestFilter
 @Component
 class JwtAuthenticationFilter(
     private val jwtTokenProvider: JwtTokenProvider,
-    private val userDetailsService: UserDetailsService
+    private val userDetailsService: UserDetailsService,
+    private val securityContext: SecurityContext
 ) : OncePerRequestFilter() {
 
     private val log = LoggerFactory.getLogger(JwtAuthenticationFilter::class.java)
@@ -39,6 +40,8 @@ class JwtAuthenticationFilter(
                     )
 
                     SecurityContextHolder.getContext().authentication = authentication
+
+                    securityContext.setUserId(userId = jwtTokenProvider.getUserIdFromToken(token)!!)
 
                     log.debug("Usuario autenticado desde JWT: {}", email)
                 }
