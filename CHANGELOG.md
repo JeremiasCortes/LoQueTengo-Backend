@@ -22,6 +22,8 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 - Repositorio [PurchaseDetail](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/PurchaseDetailRepository.kt) para la entidad PurchaseDetail
 - Repositorio [TypeUnit](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/TypeUnitRepository.kt) para la entidad TypeUnit
 - Repositorio [Unit](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/repository/UnitRepository.kt) para la entidad Unit
+- Servicio [Category](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/service/CategoryService.kt)
+- Controlador [Category](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/controller/CategoryController.kt)
 
 ## [0.0.1] - 2026-07-03
 
