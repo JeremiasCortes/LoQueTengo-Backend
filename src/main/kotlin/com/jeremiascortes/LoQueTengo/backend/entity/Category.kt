@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
+import java.util.*
 
 @Entity
 @Table(name = "category")
@@ -13,5 +14,8 @@ import org.hibernate.annotations.SQLRestriction
 class Category(
 
     @Column(nullable = false, length = 32)
-    var name: String
+    var name: String,
+
+    @Column(nullable = false, name = "user_id")
+    var user: UUID
 ) : BaseEntity()
