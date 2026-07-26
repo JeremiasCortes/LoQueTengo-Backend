@@ -11,6 +11,16 @@ import java.util.*
 interface ProductRepository: JpaRepository<Product, UUID> {
 
     /**
+     * Busca todos los productos asociados a un usuario específico en la base de datos.
+     *
+     * @param userId El identificador único (UUID) del usuario cuyos productos se desean buscar.
+     * @return Una lista de objetos [Product] que representan los productos asociados al usuario proporcionado.
+     * Si no se encuentran productos, la lista estará vacía.
+     */
+    @Query("SELECT p FROM Product p WHERE p.userId = :userId")
+    fun findAllByUserId(@Param("userId") userId: UUID): List<Product>
+
+    /**
      * Busca un producto en la base de datos utilizando su identificador único y el identificador del usuario asociado.
      *
      * @param id El identificador único (UUID) del producto que se desea buscar.
