@@ -7,7 +7,7 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
-## [0.0.2]
+## [0.0.2] - 2026-07-26
 
 ### Added
 - Entidad [Category](src/main/kotlin/com/jeremiascortes/LoQueTengo/backend/entity/Category.kt)
