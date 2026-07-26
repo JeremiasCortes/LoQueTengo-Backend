@@ -1,12 +1,9 @@
 package com.jeremiascortes.LoQueTengo.backend.dto.response
 
-import java.time.Instant
-
 data class ApiResponse<T>(
     val success: Boolean,
     val data: T?,
     val message: String?,
-    val timestamp: Instant = Instant.now()
 ) {
     companion object {
         fun <T> success(

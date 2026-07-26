@@ -1,9 +1,13 @@
 package com.jeremiascortes.LoQueTengo.backend.entity
 
 import jakarta.persistence.*
+import org.hibernate.annotations.SQLDelete
+import org.hibernate.annotations.SQLRestriction
 
 @Entity
 @Table(name = "profiles")
+@SQLDelete(sql = "UPDATE profiles SET is_deleted = true, deleted_at = now(), updated_at = now() WHERE id = ?")
+@SQLRestriction("is_deleted = false")
 class Profile(
 
     @OneToOne(fetch = FetchType.LAZY)
