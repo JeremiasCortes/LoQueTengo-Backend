@@ -3,6 +3,7 @@ package com.jeremiascortes.LoQueTengo.backend.entity
 import jakarta.persistence.*
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
+import java.util.*
 
 @Entity
 @Table(name = "product")
@@ -19,4 +20,7 @@ class Product(
 
     @Column(nullable = false, length = 255)
     var barCode: String,
+
+    @Column(nullable = false, name = "user_id")
+    val userId: UUID
 ) : BaseEntity()
