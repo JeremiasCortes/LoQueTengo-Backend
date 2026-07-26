@@ -50,18 +50,18 @@ interface ProductRepository: JpaRepository<Product, UUID> {
 
 
     /**
-     * Busca un producto en la base de datos que coincida con su categoría y el identificador del usuario propietario.
+     * Busca productos en la base de datos que pertenezcan a una categoría específica y estén asociados a un usuario determinado.
      *
-     * @param categoryId El identificador único (UUID) de la categoría a la que pertenece el producto que se busca.
-     * @param userId El identificador único (UUID) del usuario propietario del producto.
-     * @return Un objeto [Product] que representa al producto encontrado que coincide con los criterios proporcionados,
-     * o `null` si no se encuentra ningún producto.
+     * @param categoryId El identificador único (UUID) de la categoría a la que pertenecen los productos.
+     * @param userId El identificador único (UUID) del usuario propietario de los productos.
+     * @return Una lista de objetos [Product] que representan los productos que coinciden con la categoría y el usuario proporcionados.
+     * Si no se encuentran productos, la lista estará vacía.
      */
     @Query("SELECT p FROM Product p WHERE p.category = :category AND p.userId = :userId")
     fun findProductCategoryAndUserId(
         @Param("category") categoryId: UUID,
         @Param("userId") userId: UUID
-    ): Product?
+    ): List<Product>
 
     /**
      * Busca productos en la base de datos asociados a un usuario específico y que tengan un código de barras determinado.
