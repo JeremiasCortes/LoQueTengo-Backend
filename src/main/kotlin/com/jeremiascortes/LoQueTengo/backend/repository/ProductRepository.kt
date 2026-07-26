@@ -1,64 +1,69 @@
 package com.jeremiascortes.LoQueTengo.backend.repository
 
-import com.jeremiascortes.LoQueTengo.backend.entity.Category
 import com.jeremiascortes.LoQueTengo.backend.entity.Product
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
-import java.util.UUID
+import java.util.*
 
 @Repository
 interface ProductRepository: JpaRepository<Product, UUID> {
 
     /**
-     * Busca un producto en la base de datos por su identificador único.
+     * Busca un producto en la base de datos utilizando su identificador único y el identificador del usuario asociado.
      *
      * @param id El identificador único (UUID) del producto que se desea buscar.
-     * @return El objeto [Product] que coincide con el identificador proporcionado,
-     * o `null` si no se encuentra ningún producto con dicho identificador.
+     * @param userId El identificador único (UUID) del usuario propietario del producto.
+     * @return El producto encontrado que coincide con el identificador y el usuario proporcionados,
+     * o `null` si no se encuentra ningún producto con dichos criterios.
      */
-    @Query("SELECT p FROM Product p WHERE p.id = :id")
-    fun findProductById(@Param("id") id: UUID): Product?
+    @Query("SELECT p FROM Product p WHERE p.id = :id AND p.userId = :userId")
+    fun findProductByIdAndUserId(
+        @Param("id") id: UUID,
+        @Param("userId") userId: UUID
+    ): Product?
 
     /**
-     * Busca un producto en la base de datos por su nombre.
+     * Busca un producto en la base de datos que coincida con el nombre y el identificador de usuario proporcionado.
      *
      * @param name El nombre del producto que se desea buscar.
-     * @return Un objeto [Product] que coincide con el nombre proporcionado,
-     * o `null` si no se encuentra ningún producto con dicho nombre.
+     * @param userId El identificador único (UUID) del usuario propietario del producto.
+     * @return Un objeto [Product] que coincide con el nombre y el identificador de usuario proporcionado,
+     * o `null` si no se encuentra ningún producto que cumpla con los criterios.
      */
-    @Query("SELECT p FROM Product p WHERE p.name = :name")
-    fun findProductName(@Param("name") name: String): Product?
+    @Query("SELECT p FROM Product p WHERE p.name = :name AND p.userId = :userId")
+    fun findProductNameAndUserId(
+        @Param("name") name: String,
+        @Param("userId") userId: UUID
+    ): Product?
 
 
     /**
-     * Busca un producto en la base de datos basado en la categoría proporcionada.
+     * Busca un producto en la base de datos que coincida con su categoría y el identificador del usuario propietario.
      *
-     * @param categoryId El identificador único de la categoría asociada al producto.
-     * @return El objeto [Product] que pertenece a la categoría especificada,
-     * o `null` si no se encuentra ningún producto relacionado con dicha categoría.
+     * @param categoryId El identificador único (UUID) de la categoría a la que pertenece el producto que se busca.
+     * @param userId El identificador único (UUID) del usuario propietario del producto.
+     * @return Un objeto [Product] que representa al producto encontrado que coincide con los criterios proporcionados,
+     * o `null` si no se encuentra ningún producto.
      */
-    @Query("SELECT p FROM Product p WHERE p.category = :category")
-    fun findProductCategory(@Param("category") categoryId: String): Product?
+    @Query("SELECT p FROM Product p WHERE p.category = :category AND p.userId = :userId")
+    fun findProductCategoryAndUserId(
+        @Param("category") categoryId: UUID,
+        @Param("userId") userId: UUID
+    ): Product?
 
     /**
-     * Busca un producto en la base de datos que corresponda a una categoría específica.
-     *
-     * @param category La categoría del producto que se desea buscar.
-     * @return El objeto [Product] que pertenece a la categoría especificada,
-     * o `null` si no se encuentra ningún producto que coincida.
-     */
-    @Query("SELECT p FROM Product p WHERE p.category = :category")
-    fun findProductCategory(@Param("category") category: Category): Product?
-
-    /**
-     * Busca una lista de productos en la base de datos mediante el código de barras proporcionado.
+     * Busca productos en la base de datos asociados a un usuario específico y que tengan un código de barras determinado.
      *
      * @param barCode El código de barras del producto que se desea buscar.
-     * @return Una lista de objetos [Product] que coinciden con el código de barras especificado.
-     * La lista puede estar vacía si no se encuentran productos con dicho código de barras.
+     * @param userId El identificador único (UUID) del usuario asociado con los productos.
+     * @return Una lista de objetos [Product] que coinciden con el código de barras y el usuario proporcionados.
+     * Si no se encuentran productos, la lista estará vacía.
      */
-    @Query("SELECT p FROM Product p WHERE p.barCode = :barCode")
-    fun findProductByBarCode(@Param("barCode") barCode: String): List<Product>
+    @Query("SELECT p FROM Product p WHERE p.barCode = :barCode AND p.userId = :userId")
+    fun findProductByBarCodeAndUserId(
+        @Param("barCode") barCode: String,
+        @Param("userId") userId: UUID
+    ): List<Product>
 }
