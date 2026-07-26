@@ -15,11 +15,11 @@ class Product(
     var name: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category", nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     var category: Category,
 
-    @Column(nullable = false, length = 255)
-    var barCode: String,
+    @Column(nullable = true, length = 255)
+    var barCode: String? = null,
 
     @Column(nullable = false, name = "user_id")
     val userId: UUID
