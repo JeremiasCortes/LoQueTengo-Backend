@@ -10,7 +10,7 @@ data class ProductRequest(
     var name: String,
 
     @field:NotBlank(message = "La categoria de producto es obligatorio")
-    var category: UUID,
+    var categoryId: UUID,
 
-    var bar_code: String? = null
+    var barCode: String? = null
 )
