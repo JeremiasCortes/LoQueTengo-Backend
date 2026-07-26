@@ -11,7 +11,7 @@ import org.hibernate.annotations.SQLRestriction
 class Product(
 
     @Column(nullable = false, length = 255)
-    val name: String,
+    var name: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category", nullable = false)
