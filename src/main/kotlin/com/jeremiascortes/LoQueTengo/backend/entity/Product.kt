@@ -1,28 +1,22 @@
 package com.jeremiascortes.LoQueTengo.backend.entity
 
 import jakarta.persistence.*
-import org.hibernate.annotations.DynamicUpdate
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
-import java.util.*
 
 @Entity
 @Table(name = "product")
 @SQLDelete(sql = "UPDATE product SET is_deleted = TRUE, deleted_at = now(), updated_at = now() WHERE id = ?")
 @SQLRestriction("is_deleted = false")
-@DynamicUpdate
 class Product(
 
     @Column(nullable = false, length = 255)
-    var name: String,
+    val name: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category", nullable = false)
     var category: Category,
 
-    @Column(nullable = true, length = 255)
-    var barCode: String? = null,
-
-    @Column(nullable = false, name = "user_id")
-    val userId: UUID
+    @Column(nullable = false, length = 255)
+    var barCode: String,
 ) : BaseEntity()
