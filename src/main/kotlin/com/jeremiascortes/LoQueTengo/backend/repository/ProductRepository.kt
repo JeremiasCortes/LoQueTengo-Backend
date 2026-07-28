@@ -57,7 +57,7 @@ interface ProductRepository: JpaRepository<Product, UUID> {
      * @return Una lista de objetos [Product] que representan los productos que coinciden con la categoría y el usuario proporcionados.
      * Si no se encuentran productos, la lista estará vacía.
      */
-    @Query("SELECT p FROM Product p WHERE p.category = :category AND p.userId = :userId")
+    @Query("SELECT p FROM Product p WHERE p.category.id = :category AND p.userId = :userId")
     fun findProductCategoryAndUserId(
         @Param("category") categoryId: UUID,
         @Param("userId") userId: UUID
