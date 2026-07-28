@@ -1,6 +1,7 @@
 package com.jeremiascortes.LoQueTengo.backend.entity
 
 import jakarta.persistence.*
+import org.hibernate.annotations.DynamicUpdate
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
 import java.util.*
@@ -9,6 +10,7 @@ import java.util.*
 @Table(name = "product")
 @SQLDelete(sql = "UPDATE product SET is_deleted = TRUE, deleted_at = now(), updated_at = now() WHERE id = ?")
 @SQLRestriction("is_deleted = false")
+@DynamicUpdate
 class Product(
 
     @Column(nullable = false, length = 255)
