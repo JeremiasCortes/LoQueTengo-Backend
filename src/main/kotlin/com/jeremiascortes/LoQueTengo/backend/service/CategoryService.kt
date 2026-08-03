@@ -12,8 +12,8 @@ import java.util.*
 @Service
 class CategoryService(
     private val categoryRepository: CategoryRepository,
-    private val securityContext: SecurityContext
-) {
+    securityContext: SecurityContext
+) : BaseService(securityContext) {
     /**
      * Recupera todas las categorías asociadas al usuario actualmente autenticado.
      *
@@ -21,7 +21,7 @@ class CategoryService(
      * Si el usuario no tiene categorías asociadas, se devolverá una lista vacía.
      */
     @Transactional(readOnly = true)
-    fun findAll(): List<Category> = categoryRepository.findAllByUserId(securityContext.getUserId()!!)
+    fun findAll(): List<Category> = categoryRepository.findAllByUserId(currentUserId())
 
     /**
      * Busca una categoría por su identificador y el identificador del usuario asociado.
@@ -33,7 +33,7 @@ class CategoryService(
     @Transactional(readOnly = true)
         fun findById(id: UUID): Category =
         categoryRepository.findCategoryByIdAndUserId(
-            userId = securityContext.getUserId()!!,
+            userId = currentUserId(),
             id = id
         ) ?: throw ResourceNotFoundException("Categoria no encontrada")
 
@@ -47,7 +47,7 @@ class CategoryService(
     @Transactional(readOnly = true)
     fun findByName(name: String): Category =
         categoryRepository.findCategoryByNameAndUserId(
-            userId = securityContext.getUserId()!!,
+            userId = currentUserId(),
             name = name
         ) ?: throw ResourceNotFoundException("Categoria no encontrada")
 
@@ -59,7 +59,7 @@ class CategoryService(
      */
     @Transactional()
     fun create(request: CategoryRequest): Category {
-        val userId = securityContext.getUserId()!!
+        val userId = currentUserId()
 
         val category = Category(
             name = request.name,
@@ -91,5 +91,9 @@ class CategoryService(
      * @param id El identificador único (UUID) de la categoría que se desea eliminar.
      */
     @Transactional
-    fun delete(id: UUID) = categoryRepository.deleteById(id)
+    fun delete(id: UUID) {
+        val category = this.findById(id)
+
+        categoryRepository.deleteById(id)
+    }
 }

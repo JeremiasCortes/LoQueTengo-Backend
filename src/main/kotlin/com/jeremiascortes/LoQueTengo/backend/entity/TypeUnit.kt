@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
+import java.util.UUID
 
 @Entity
 @Table(name = "type_unit")
@@ -13,5 +14,8 @@ import org.hibernate.annotations.SQLRestriction
 class TypeUnit(
 
     @Column(nullable = false, length = 32)
-    val name: String
+    var name: String,
+
+    @Column(nullable = false, name = "user_id")
+    val userId: UUID
 ) : BaseEntity()

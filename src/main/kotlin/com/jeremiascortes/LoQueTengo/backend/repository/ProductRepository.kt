@@ -43,7 +43,7 @@ interface ProductRepository: JpaRepository<Product, UUID> {
      * o `null` si no se encuentra ningún producto que cumpla con los criterios.
      */
     @Query("SELECT p FROM Product p WHERE p.name = :name AND p.userId = :userId")
-    fun findProductNameAndUserId(
+    fun findProductByNameAndUserId(
         @Param("name") name: String,
         @Param("userId") userId: UUID
     ): Product?
@@ -58,7 +58,7 @@ interface ProductRepository: JpaRepository<Product, UUID> {
      * Si no se encuentran productos, la lista estará vacía.
      */
     @Query("SELECT p FROM Product p WHERE p.category.id = :category AND p.userId = :userId")
-    fun findProductCategoryAndUserId(
+    fun findProductByCategoryAndUserId(
         @Param("category") categoryId: UUID,
         @Param("userId") userId: UUID
     ): List<Product>
