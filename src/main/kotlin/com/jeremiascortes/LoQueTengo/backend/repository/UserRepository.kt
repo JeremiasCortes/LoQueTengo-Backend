@@ -29,11 +29,11 @@ interface UserRepository : JpaRepository<User, UUID> {
      * @return Un objeto `User` si se encuentra un usuario que coincide con el proveedor de autenticación
      * y el identificador proporcionados, o `null` si no se encuentra ningún usuario.
      */
-    @Query("SELECT u FROM User u WHERE u.authProvider = :provider AND u.providerId = u.providerId")
-    fun findByOAuthAccount(
-        @Param("provider") provider: AuthProvider,
-        @Param("providerId") providerId: String
-    ): User?
+//    @Query("SELECT u FROM User u WHERE u.authProvider = :provider AND u.providerId = u.providerId")
+//    fun findByOAuthAccount(
+//        @Param("provider") provider: AuthProvider,
+//        @Param("providerId") providerId: String
+//    ): User?
 
     /**
      * Verifica si existe un usuario en la base de datos con el correo electrónico especificado.
@@ -53,9 +53,9 @@ interface UserRepository : JpaRepository<User, UUID> {
      * @return `true` si existe un usuario que coincide con el proveedor de autenticación
      * y el identificador proporcionados, o `false` si no se encuentra ningún usuario.
      */
-    @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.authProvider = :provider AND u.providerId = :providerId")
-    fun existsByOauthAccount(
-        @Param("provider") provider: AuthProvider,
-        @Param("providerId") providerId: String
-    ): Boolean
+//    @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.authProvider = :provider AND u.providerId = :providerId")
+//    fun existsByOauthAccount(
+//        @Param("provider") provider: AuthProvider,
+//        @Param("providerId") providerId: String
+//    ): Boolean
 }

@@ -14,7 +14,7 @@ class Unit (
     val abbreviation: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type", nullable = false)
+    @JoinColumn(name = "type_unit_id", nullable = false)
     val typeUnit: TypeUnit
 
 ) : BaseEntity()

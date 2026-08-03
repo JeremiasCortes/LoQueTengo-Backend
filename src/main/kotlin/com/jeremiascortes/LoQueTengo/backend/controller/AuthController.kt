@@ -23,7 +23,7 @@ class AuthController(
     private val authService: AuthService
 ) {
 
-    @PostMapping("/oauth")
+/*    @PostMapping("/oauth")
     fun createOAuthUser(
         @Valid @RequestBody
         request: CreateOAuthUserRequest
@@ -33,7 +33,7 @@ class AuthController(
         return ResponseEntity.status(HttpStatus.CREATED).body(
             ApiResponse.success(user, "Usuario OAuth creado correctamente")
         )
-    }
+    }*/
 
     @PostMapping("/register")
     fun createLocalUser(
