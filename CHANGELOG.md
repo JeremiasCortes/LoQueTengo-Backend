@@ -9,6 +9,9 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [0.0.3]
 
+### Added
+- CRUD de `TypeUnit`
+
 ### Changed
 - Entorno de desarrollo en sistemas Linux
 
