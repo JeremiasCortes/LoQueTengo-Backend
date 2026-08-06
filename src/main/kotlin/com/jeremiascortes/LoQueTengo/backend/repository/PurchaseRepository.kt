@@ -14,14 +14,14 @@ interface PurchaseRepository: JpaRepository<Purchase, UUID> {
     @Query("SELECT p FROM Purchase p WHERE p.id = :id AND p.userId = :userId")
     fun findPurchaseByIdAndUserId(
         @Param("id") id: UUID,
-        @Param("userId") userId: Instant
-    ): List<Purchase>
+        @Param("userId") userId: UUID
+    ): Purchase
 
 
     @Query("SELECT p FROM Purchase p WHERE p.date = :date AND p.userId = :userId")
     fun findPurchaseByDateAndUserId(
         @Param("date") date: Instant,
-        @Param("userId") userId: Instant
+        @Param("userId") userId: UUID
     ): List<Purchase>
 
     @Query("SELECT p FROM Purchase p WHERE p.userId = :userId")
