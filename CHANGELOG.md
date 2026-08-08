@@ -7,7 +7,7 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
-## [0.0.4]
+## [0.0.4] - 2026-08-08
 
 ### Added
 - CRUD de `Purchase`
