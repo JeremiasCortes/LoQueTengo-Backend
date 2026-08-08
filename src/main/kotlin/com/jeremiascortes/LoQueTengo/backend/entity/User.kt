@@ -19,13 +19,6 @@ class User(
     @Column(name = "password_hash")
     var passwordHash: String? = null,
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    val authProvider: AuthProvider = AuthProvider.LOCAL,
-
-    @Column(name = "provider_id")
-    val providerId: String? = null,
-
     @Column(nullable = false)
     var enabled: Boolean = true
 
@@ -34,7 +27,7 @@ class User(
     /**
      * Verifica si el usuario es un usuario OAuth
      */
-    fun isOauthUser(): Boolean = authProvider != AuthProvider.LOCAL
+//    fun isOauthUser(): Boolean = authProvider != AuthProvider.LOCAL
 
     /**
      * Verifica si el usuario tiene contraseña configurada
@@ -45,7 +38,7 @@ class User(
         fun createLocal(email: String, passwordHash: String): User = User(
             email = email,
             passwordHash = passwordHash,
-            authProvider = AuthProvider.LOCAL
+//            authProvider = AuthProvider.LOCAL
         )
 
         fun createOAuth(
@@ -54,8 +47,8 @@ class User(
             email: String? = null
         ): User = User(
             email = email,
-            authProvider = provider,
-            providerId = providerId
+//            authProvider = provider,
+//            providerId = providerId
         )
     }
 

@@ -17,10 +17,16 @@ class Profile(
     @Column(nullable = false, length = 32)
     var firstName: String,
 
-    @Column(nullable = true, length = 32)
-    var lastName: String? = null
+    @Column(name = "last_name_1", nullable = true, length = 32)
+    var lastName1: String? = null,
 
+    @Column(name = "last_name_2", nullable = true, length = 32)
+    var lastName2: String? = null
 ) : BaseEntity() {
     val fullName: String
-        get() = if (lastName.isNullOrBlank()) firstName else "$firstName $lastName"
+        get() = listOfNotNull(
+            firstName,
+            lastName1?.takeIf { it.isNotBlank() },
+            lastName2?.takeIf { it.isNotBlank() }
+        ).joinToString(" ")
 }

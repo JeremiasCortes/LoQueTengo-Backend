@@ -28,7 +28,7 @@ class UserService(
         return UserResponse.fromEntity(userRepository.save(user))
     }
 
-    @Transactional
+/*    @Transactional
     fun createOAuthUser(request: CreateOAuthUserRequest): UserResponse {
         userRepository.findByOAuthAccount(request.provider, request.providerId)
             ?.let { throw OAuthAccountAlreadyLinkedException(request.provider) }
@@ -45,5 +45,5 @@ class UserService(
             email = request.email
         )
         return UserResponse.fromEntity(userRepository.save(user))
-    }
+    }*/
 }

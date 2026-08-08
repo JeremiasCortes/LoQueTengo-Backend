@@ -7,6 +7,7 @@ import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
 import java.math.BigDecimal
 import java.time.Instant
+import java.util.UUID
 
 @Entity
 @Table(name = "purchase")
@@ -18,5 +19,8 @@ class Purchase(
     var date: Instant,
 
     @Column(nullable = false, precision = 5, scale = 2)
-    var total: BigDecimal
+    var total: BigDecimal,
+
+    @Column(nullable = false, name = "user_id")
+    val userId: UUID
 ) : BaseEntity()

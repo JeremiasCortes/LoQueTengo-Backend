@@ -7,6 +7,16 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [0.0.3]
+
+### Added
+- CRUD de `TypeUnit`
+- CRUD de `Purchase`
+- CRUD de `Unit`
+
+### Changed
+- Entorno de desarrollo en sistemas Linux
+
 ## [0.0.2] - 2026-07-26
 
 ### Added

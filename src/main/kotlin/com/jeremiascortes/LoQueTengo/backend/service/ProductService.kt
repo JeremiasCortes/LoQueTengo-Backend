@@ -4,7 +4,6 @@ import com.jeremiascortes.LoQueTengo.backend.dto.request.ProductRequest
 import com.jeremiascortes.LoQueTengo.backend.entity.Category
 import com.jeremiascortes.LoQueTengo.backend.entity.Product
 import com.jeremiascortes.LoQueTengo.backend.exception.ResourceNotFoundException
-import com.jeremiascortes.LoQueTengo.backend.exception.UnauthorizedException
 import com.jeremiascortes.LoQueTengo.backend.repository.CategoryRepository
 import com.jeremiascortes.LoQueTengo.backend.repository.ProductRepository
 import com.jeremiascortes.LoQueTengo.backend.security.SecurityContext
@@ -16,10 +15,8 @@ import java.util.*
 class ProductService(
     private val productRepository: ProductRepository,
     private val categoryRepository: CategoryRepository,
-    private val securityContext: SecurityContext
-) {
-    private fun currentUserId(): UUID =
-        securityContext.getUserId() ?: throw UnauthorizedException("No se pudo identificar al usuario")
+    securityContext: SecurityContext
+) : BaseService(securityContext) {
 
     private fun validCategory(categoryId: UUID): Category =
         categoryRepository.findCategoryByIdAndUserId(
@@ -38,14 +35,14 @@ class ProductService(
         ) ?: throw ResourceNotFoundException("Producto no encontrada")
 
     fun findByName(name: String): Product =
-        productRepository.findProductNameAndUserId(
+        productRepository.findProductByNameAndUserId(
             name = name,
             userId = currentUserId()
         ) ?: throw ResourceNotFoundException("Producto no encontrada")
 
     @Transactional(readOnly = true)
     fun findByCategory(categoryId: UUID): List<Product> =
-        productRepository.findProductCategoryAndUserId(
+        productRepository.findProductByCategoryAndUserId(
             categoryId = categoryId,
             userId = currentUserId()
         )

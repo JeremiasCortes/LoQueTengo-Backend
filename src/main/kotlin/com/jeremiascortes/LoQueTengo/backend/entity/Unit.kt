@@ -1,20 +1,23 @@
 package com.jeremiascortes.LoQueTengo.backend.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
 import java.util.*
 
 @Entity
 @Table(name = "unit")
 class Unit (
-
     @Column(nullable = false, length = 32)
-    val name: String,
+    var name: String,
 
     @Column(nullable = false, length = 8)
-    val abbreviation: String,
+    var abbreviation: String,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type", nullable = false)
-    val typeUnit: TypeUnit
+    @Column(name = "type_unit_id", nullable = false)
+    var typeUnitId: UUID,
+
+    @Column(name = "user_id", nullable = false)
+    val userId: UUID
 
 ) : BaseEntity()
