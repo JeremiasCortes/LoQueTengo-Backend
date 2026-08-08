@@ -12,6 +12,7 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 ### Added
 - CRUD de `TypeUnit`
 - CRUD de `Purchase`
+- CRUD de `Unit`
 
 ### Changed
 - Entorno de desarrollo en sistemas Linux
