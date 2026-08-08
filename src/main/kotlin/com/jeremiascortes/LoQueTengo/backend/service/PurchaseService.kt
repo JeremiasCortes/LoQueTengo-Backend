@@ -14,7 +14,6 @@ class PurchaseService(
     private val purchaseRepository: PurchaseRepository,
     securityContext: SecurityContext
 ): BaseService(securityContext) {
-
     @Transactional(readOnly = true)
     fun getAll(): List<Purchase> =
         purchaseRepository.findAllByUserId(currentUserId())
@@ -24,7 +23,7 @@ class PurchaseService(
         purchaseRepository.findPurchaseByIdAndUserId(
             id = id,
             userId = currentUserId()
-        ) ?: throw IllegalArgumentException("Compra no encontrada")
+        )
 
     @Transactional(readOnly = true)
     fun getByDate(date: Instant): List<Purchase> =

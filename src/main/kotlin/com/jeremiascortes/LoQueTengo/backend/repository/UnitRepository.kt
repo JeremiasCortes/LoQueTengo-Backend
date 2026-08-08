@@ -9,7 +9,6 @@ import java.util.*
 
 @Repository
 interface UnitRepository : JpaRepository<Unit, UUID> {
-
     /**
      * Busca todas las unidades asociadas a un usuario específico.
      *

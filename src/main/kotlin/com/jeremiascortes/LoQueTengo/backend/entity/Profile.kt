@@ -22,7 +22,6 @@ class Profile(
 
     @Column(name = "last_name_2", nullable = true, length = 32)
     var lastName2: String? = null
-
 ) : BaseEntity() {
     val fullName: String
         get() = listOfNotNull(

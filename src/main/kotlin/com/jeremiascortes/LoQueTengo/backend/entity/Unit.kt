@@ -8,7 +8,6 @@ import java.util.*
 @Entity
 @Table(name = "unit")
 class Unit (
-
     @Column(nullable = false, length = 32)
     var name: String,
 

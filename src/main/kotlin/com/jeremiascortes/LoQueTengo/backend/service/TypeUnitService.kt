@@ -5,14 +5,13 @@ import com.jeremiascortes.LoQueTengo.backend.entity.TypeUnit
 import com.jeremiascortes.LoQueTengo.backend.repository.TypeUnitRepository
 import com.jeremiascortes.LoQueTengo.backend.security.SecurityContext
 import org.springframework.stereotype.Service
-import java.util.UUID
+import java.util.*
 
 @Service
 class TypeUnitService(
     protected val typeUnitRepository: TypeUnitRepository,
     securityContext: SecurityContext
 ) : BaseService(securityContext) {
-
     /**
      * Recupera todos los objetos de tipo `TypeUnit` asociados al usuario actualmente autenticado.
      *

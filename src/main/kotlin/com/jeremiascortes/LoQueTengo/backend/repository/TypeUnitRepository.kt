@@ -5,11 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
-import java.util.UUID
+import java.util.*
 
 @Repository
 interface TypeUnitRepository : JpaRepository<TypeUnit, UUID> {
-
     /**
      * Busca un tipo de unidad específico en la base de datos utilizando su identificador único y el identificador del
      * usuario asociado.
